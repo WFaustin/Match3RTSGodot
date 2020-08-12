@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Images/Pieces/warrior.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/RTSSelector.tscn" type="PackedScene" id=2]
+
+[node name="WarriorRTSSelector" instance=ExtResource( 2 )]
+rtsPiece = 1
+
+[node name="Sprite" parent="." index="0"]
+scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 1 )

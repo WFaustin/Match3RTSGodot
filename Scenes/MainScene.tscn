@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Images/UI/Match3BackSound.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Tower.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Images/UI/RTSBackground.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/grid.gd" type="Script" id=4]
+
+[node name="GameWindow" type="Node2D"]
+
+[node name="RTS Part" type="TextureRect" parent="."]
+margin_right = 576.0
+margin_bottom = 512.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Match 3 Part" type="TextureRect" parent="."]
+margin_top = 512.0
+margin_right = 576.0
+margin_bottom = 1024.0
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grid" type="Node2D" parent="."]
+script = ExtResource( 4 )
+width = 5
+height = 7
+x_start = 64
+y_start = 950
+offset = 64
+y_offset = 1
+selectorx_start = 500
+selectory_start = 950
+selector_offset = 100
+
+[node name="destoryTimer" type="Timer" parent="."]
+wait_time = 0.428
+one_shot = true
+
+[node name="collapseTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="refill" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="Selectors" type="Node2D" parent="."]
+
+[node name="RTS" type="Node2D" parent="."]
+
+[node name="LeftTowers" type="Node2D" parent="RTS"]
+
+[node name="Node2D2" type="Node2D" parent="RTS/LeftTowers"]
+position = Vector2( 165, 115 )
+
+[node name="Tower" parent="RTS/LeftTowers/Node2D2" instance=ExtResource( 2 )]
+
+[node name="Node2D3" type="Node2D" parent="RTS/LeftTowers"]
+position = Vector2( 165, 406 )
+
+[node name="Tower" parent="RTS/LeftTowers/Node2D3" instance=ExtResource( 2 )]
+
+[node name="Node2D4" type="Node2D" parent="RTS/LeftTowers"]
+position = Vector2( 42, 256 )
+
+[node name="Tower" parent="RTS/LeftTowers/Node2D4" instance=ExtResource( 2 )]
+
+[node name="RightTowers" type="Node2D" parent="RTS"]
+
+[node name="Node2D2" type="Node2D" parent="RTS/RightTowers"]
+position = Vector2( 411, 115 )
+
+[node name="Tower" parent="RTS/RightTowers/Node2D2" instance=ExtResource( 2 )]
+
+[node name="Node2D3" type="Node2D" parent="RTS/RightTowers"]
+position = Vector2( 411, 406 )
+
+[node name="Tower" parent="RTS/RightTowers/Node2D3" instance=ExtResource( 2 )]
+
+[node name="Node2D4" type="Node2D" parent="RTS/RightTowers"]
+position = Vector2( 534, 256 )
+
+[node name="Tower" parent="RTS/RightTowers/Node2D4" instance=ExtResource( 2 )]
+[connection signal="timeout" from="destoryTimer" to="grid" method="_on_destoryTimer_timeout"]
+[connection signal="timeout" from="collapseTimer" to="grid" method="_on_collapseTimer_timeout"]
+[connection signal="timeout" from="refill" to="grid" method="_on_refill_timeout"]
