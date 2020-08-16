@@ -99,7 +99,6 @@ func swapPieces(column, row, columnrel, rowrel):
 	pass;
 	
 func checkIfRTSPieceFilled(chosen_selector):
-	print(chosen_selector.myPiece.color);
 	var cc = chosen_selector.myPiece.color; 
 	if allColorsMatched.has(cc):
 		return true;  
@@ -186,7 +185,6 @@ func spawnSelectors():
 		selectorPieceArray.append(selector);  
 		selectorPieceArray[0].position = convertGridToPixelSelector(i); 
 		allSelectors += selectorPieceArray; 
-		print(String(selectorPieceArray[0].position)); 
 	partiallyFilledSelectors();
 	pass; 
 	
@@ -232,7 +230,6 @@ func destroyMatchedPieces():
 		for j in height:
 			if allPieces[i][j] != null and allPieces[i][j].getMatched() == true:
 				allPieces[i][j].queue_free(); 
-				print(allPieces[i][j]);
 	pass;
 				
 func collapsedColumns():
@@ -271,7 +268,7 @@ func addRTSPiece(piece):
 func _process(delta):
 	#if state == move:
 	#	touchInput(); 
-	touchInput(); 
+	touchInput();
 	pass; 
 
 

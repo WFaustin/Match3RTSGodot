@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Images/UI/Match3BackSound.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Tower.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/GameHandler.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Images/UI/RTSBackground.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/grid.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/RTS.gd" type="Script" id=6]
+[ext_resource path="res://player_env.gd" type="Script" id=7]
 
-[node name="GameWindow" type="Node2D"]
+[node name="MainGame" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="RTS Part" type="TextureRect" parent="."]
 margin_right = 576.0
@@ -51,40 +54,31 @@ one_shot = true
 [node name="Selectors" type="Node2D" parent="."]
 
 [node name="RTS" type="Node2D" parent="."]
+script = ExtResource( 6 )
 
-[node name="LeftTowers" type="Node2D" parent="RTS"]
+[node name="Player1" type="Node2D" parent="RTS"]
+script = ExtResource( 7 )
 
-[node name="Node2D2" type="Node2D" parent="RTS/LeftTowers"]
+[node name="Node2D2" type="Node2D" parent="RTS/Player1"]
 position = Vector2( 165, 115 )
 
-[node name="Tower" parent="RTS/LeftTowers/Node2D2" instance=ExtResource( 2 )]
-
-[node name="Node2D3" type="Node2D" parent="RTS/LeftTowers"]
+[node name="Node2D3" type="Node2D" parent="RTS/Player1"]
 position = Vector2( 165, 406 )
 
-[node name="Tower" parent="RTS/LeftTowers/Node2D3" instance=ExtResource( 2 )]
-
-[node name="Node2D4" type="Node2D" parent="RTS/LeftTowers"]
+[node name="Node2D4" type="Node2D" parent="RTS/Player1"]
 position = Vector2( 42, 256 )
 
-[node name="Tower" parent="RTS/LeftTowers/Node2D4" instance=ExtResource( 2 )]
+[node name="Player2" type="Node2D" parent="RTS"]
+script = ExtResource( 7 )
 
-[node name="RightTowers" type="Node2D" parent="RTS"]
-
-[node name="Node2D2" type="Node2D" parent="RTS/RightTowers"]
+[node name="Node2D2" type="Node2D" parent="RTS/Player2"]
 position = Vector2( 411, 115 )
 
-[node name="Tower" parent="RTS/RightTowers/Node2D2" instance=ExtResource( 2 )]
-
-[node name="Node2D3" type="Node2D" parent="RTS/RightTowers"]
+[node name="Node2D3" type="Node2D" parent="RTS/Player2"]
 position = Vector2( 411, 406 )
 
-[node name="Tower" parent="RTS/RightTowers/Node2D3" instance=ExtResource( 2 )]
-
-[node name="Node2D4" type="Node2D" parent="RTS/RightTowers"]
+[node name="Node2D4" type="Node2D" parent="RTS/Player2"]
 position = Vector2( 534, 256 )
-
-[node name="Tower" parent="RTS/RightTowers/Node2D4" instance=ExtResource( 2 )]
 [connection signal="timeout" from="destoryTimer" to="grid" method="_on_destoryTimer_timeout"]
 [connection signal="timeout" from="collapseTimer" to="grid" method="_on_collapseTimer_timeout"]
 [connection signal="timeout" from="refill" to="grid" method="_on_refill_timeout"]

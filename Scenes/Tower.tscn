@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/Images/Pieces/Tower.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Tower.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29.6162, 45.5245 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 30.2763, 45.5665 )
+
 [node name="Tower" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -1, -15 )
@@ -22,3 +27,12 @@ shape = SubResource( 1 )
 
 [node name="DownSpawnPoint" type="Node2D" parent="SpawnPoint"]
 position = Vector2( 28.6055, 19.0703 )
+
+[node name="ClickingPoint" type="Area2D" parent="."]
+collision_layer = 2147483650
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickingPoint"]
+position = Vector2( -3.05176e-05, -12.5992 )
+shape = SubResource( 2 )
+[connection signal="input_event" from="ClickingPoint" to="." method="_on_ClickingPoint_input_event"]
