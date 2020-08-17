@@ -38,6 +38,7 @@ y_offset = 1
 selectorx_start = 500
 selectory_start = 950
 selector_offset = 100
+playernum = 1
 
 [node name="destoryTimer" type="Timer" parent="."]
 wait_time = 0.428

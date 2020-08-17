@@ -38,8 +38,10 @@ func addPiece(piece):
 	myPiece = piece
 	return s
 	
-func addRTSPiece():
-	return rtsPieceInstance.instance()
+func addRTSPiece(player):
+	var s = rtsPieceInstance.instance()
+	s.team = player; 
+	return s; 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

@@ -4,7 +4,8 @@
 [ext_resource path="res://Scenes/RTSPiece.tscn" type="PackedScene" id=2]
 
 [node name="HealerRTSPiece" instance=ExtResource( 2 )]
+moveSpeed = 2
 
 [node name="Sprite" parent="." index="0"]
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )

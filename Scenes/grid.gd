@@ -11,6 +11,8 @@ export (int) var y_offset;
 export (int) var selectorx_start; 
 export (int) var selectory_start; 
 export (int) var selector_offset; 
+export (int) var playernum; 
+var player; 
 var controlling = false;
 var selectorChoice = false;  
 
@@ -50,7 +52,20 @@ func _ready():
 	randomize(); 
 	spawnPieces(); 
 	spawnSelectors(); 
+	setPlayer(); 
 	pass # Replace with function body.
+
+
+func setPlayer():
+	if playernum == 1:
+		player = get_parent().get_node("RTS/Player1"); 
+		player.setSide("left"); 
+	elif playernum == 2:
+		player = get_parent().get_node("RTS/Player2"); 
+		player.setSide("right"); 
+	else:
+		print("Error with getting player.");
+	
 
 func touchInput():
 	var gridPosFirst; 
@@ -78,8 +93,9 @@ func touchInput():
 			var s = addRTSPiece(allSelectors[selectorgridFirst]);
 			allColorsMatched.erase(allSelectors[selectorgridFirst].myPiece.color); 
 			partiallyFilledSelectors();
-			s.position = finalTouch;
-			get_parent().get_node("RTS Part").add_child(s);
+			player.addRTSPieceatSpawnPosition(s, finalTouch); 
+			#s.position = finalTouch;
+			#get_parent().get_node("RTS Part").add_child(s);
 		controlling = false;
 		selectorChoice = false;  
 	pass; 
@@ -262,7 +278,7 @@ func refillColumns():
 
 
 func addRTSPiece(piece):
-	return piece.addRTSPiece();
+	return piece.addRTSPiece(player);
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 
 func _process(delta):

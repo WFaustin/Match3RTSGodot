@@ -7,5 +7,5 @@
 rtsPiece = 3
 
 [node name="Sprite" parent="." index="0"]
-scale = Vector2( 0.15, 0.1 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )

@@ -23,7 +23,7 @@ func getSpawnPoints():
 func setSpawnPoints():
 	var s = get_node("SpawnPoint").get_children(); 
 	for i in s:
-		spawnPoints.append(i.position); 
+		spawnPoints.append(i.global_position); 
 	pass; 
 	
 func startingHealth():
