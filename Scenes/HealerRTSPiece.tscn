@@ -5,6 +5,10 @@
 
 [node name="HealerRTSPiece" instance=ExtResource( 2 )]
 moveSpeed = 2
+attackSpeed = 14
+attackDamage = 10
+attackRange = 40.0
+healthMax = 130
 
 [node name="Sprite" parent="." index="0"]
 scale = Vector2( 1, 1 )

@@ -5,8 +5,15 @@
 
 [node name="WarriorRTSPiece" instance=ExtResource( 2 )]
 moveSpeed = 3
+attackSpeed = 4
+attackDamage = 25
+attackRange = 50.0
+healthMax = 175
 isfacingLeft = true
 
 [node name="Sprite" parent="." index="0"]
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 1 )
+
+[node name="FakeRaycast" parent="." index="2"]
+position = Vector2( -60, 0 )

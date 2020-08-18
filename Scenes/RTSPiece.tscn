@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/RTSPiece.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 272, 205 )
+extents = Vector2( 61, 59 )
 
 [node name="RTSPiece" type="Node2D"]
 script = ExtResource( 1 )
@@ -17,5 +17,8 @@ collision_mask = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
 shape = SubResource( 1 )
 
-[node name="RayCast2D" type="RayCast2D" parent="KinematicBody2D"]
-collision_mask = 7
+[node name="FakeRaycast" type="Node2D" parent="."]
+position = Vector2( 60, 0 )
+
+[node name="attackspeedtimer" type="Timer" parent="."]
+[connection signal="timeout" from="attackspeedtimer" to="." method="_on_attackspeedtimer_timeout"]

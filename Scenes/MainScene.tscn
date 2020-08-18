@@ -80,6 +80,9 @@ position = Vector2( 411, 406 )
 
 [node name="Node2D4" type="Node2D" parent="RTS/Player2"]
 position = Vector2( 534, 256 )
+
+[node name="askForEnemies" type="Timer" parent="."]
 [connection signal="timeout" from="destoryTimer" to="grid" method="_on_destoryTimer_timeout"]
 [connection signal="timeout" from="collapseTimer" to="grid" method="_on_collapseTimer_timeout"]
 [connection signal="timeout" from="refill" to="grid" method="_on_refill_timeout"]
+[connection signal="timeout" from="askForEnemies" to="." method="_on_askForEnemies_timeout"]

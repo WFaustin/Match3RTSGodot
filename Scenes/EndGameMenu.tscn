@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://EndGameMenu.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Images/UI/PlayAgain.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Images/UI/MainGameScreen.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/UI/DrawPlayers.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Images/UI/Player1Wins.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Images/UI/Player2Wins.png" type="Texture" id=6]
+
+[node name="EndGameMenu" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Background" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player 1 Wins" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 288, 220 )
+texture = ExtResource( 5 )
+
+[node name="Player 2 Wins" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 288, 220 )
+texture = ExtResource( 6 )
+
+[node name="Draw" type="Sprite" parent="Background"]
+visible = false
+position = Vector2( 288, 220 )
+texture = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Background"]
+position = Vector2( 288, 771.289 )
+texture = ExtResource( 2 )

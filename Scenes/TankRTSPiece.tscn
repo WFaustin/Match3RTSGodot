@@ -5,8 +5,15 @@
 
 [node name="TankRTSPiece" instance=ExtResource( 2 )]
 moveSpeed = 1
+attackSpeed = 10
+attackDamage = 30
+attackRange = 40.0
+healthMax = 500
 isfacingLeft = true
 
 [node name="Sprite" parent="." index="0"]
 scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
+
+[node name="FakeRaycast" parent="." index="2"]
+position = Vector2( -60, 0 )

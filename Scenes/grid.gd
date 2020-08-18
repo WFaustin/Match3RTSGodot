@@ -60,9 +60,11 @@ func setPlayer():
 	if playernum == 1:
 		player = get_parent().get_node("RTS/Player1"); 
 		player.setSide("left"); 
+		get_parent().get_node("RTS/Player2").setSide("right");
 	elif playernum == 2:
 		player = get_parent().get_node("RTS/Player2"); 
-		player.setSide("right"); 
+		player.setSide("right");
+		get_parent().get_node("RTS/Player1").setSide("left");
 	else:
 		print("Error with getting player.");
 	

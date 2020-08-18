@@ -34,8 +34,10 @@ func getHealth():
 	
 func subtractHealth(number):
 	health -= number; 
+	print(health);
 	if health < 0:
 		health = 0;
+		self.queue_free(); 
 	if health > healthMax:
 		health = healthMax; 
 		
