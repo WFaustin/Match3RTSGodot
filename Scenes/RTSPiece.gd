@@ -26,21 +26,31 @@ enum {start, move, firstattack, attack, die, special}
 func _ready():
 	sprite = get_node("Sprite");
 	state = start; 
+	health = healthMax;
 	pass # Replace with function body.
 
 func move():
-	if team.side == "left":
-		velocity.x += .4; 
-	else:
-		velocity.x -= .4; 
-	velocity = velocity.normalized() * moveSpeed; 
-	self.position += velocity;
-	if self.position.x > 576 or self.position.x < 0:
+	if self.global_position.x > 576 or self.global_position.x < 0:
 		  state = die; 
 	if isTarInRange():
 		velocity = Vector2(0,0); 
-		print("AHHHHHHHHHHHHHHHHHHHHH")
 		state = firstattack; 
+	else:
+		if team.side == "left":
+			velocity.x += .4; 
+		else:
+			velocity.x -= .4; 
+		if target != null:
+			if self.global_position.y < target.global_position.y:
+				velocity.y += .4; 
+			elif self.global_position.y > target.global_position.y:
+				velocity.y -= .4; 
+			else:
+				velocity.y = 0;
+		#print("Self is ", self.global_position.y, " Target is ", target.global_position.y)
+		velocity = velocity.normalized() * moveSpeed; 
+		self.position += velocity
+		#self.position += velocity*moveSpeed;
 
 func attack():
 	if isTarInRange():
@@ -71,20 +81,20 @@ func isTarInRange():
 		if target == null:
 			return false; 
 	var rayCastpos = get_node("FakeRaycast").global_position;
-	print(rayCastpos); 
+	#print(rayCastpos); 
 	var tarPos = target.global_position; 
-	print(tarPos);
+	#print(tarPos);
 	var xdist = rayCastpos.x - tarPos.x;
 	var ydist = rayCastpos.y - tarPos.y;
 	var dist = sqrt(pow(xdist, 2) + pow(ydist, 2));
-	print(dist); 
+	#print(dist); 
 	if dist <= attackRange:
 		return true; 
 	else:
 		return false; 
 
 func flipAround():
-	print("in flip around")
+	#print("in flip around")
 	isfacingLeft = !isfacingLeft; 
 	self.scale.x *= -1; 
 	
@@ -108,7 +118,7 @@ func findClosestTarget():
 		target = closestTarget;
 	else:
 		state = die; 
-	print(target)
+	#print(target)
 	 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

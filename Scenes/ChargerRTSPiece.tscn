@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/RTSPiece.tscn" type="PackedScene" id=2]
 
 [node name="ChargerRTSPiece" instance=ExtResource( 2 )]
-moveSpeed = 10
+moveSpeed = 6
 attackSpeed = 4
 attackDamage = 15
 attackRange = 50.0

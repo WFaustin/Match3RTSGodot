@@ -61,10 +61,14 @@ func setPlayer():
 		player = get_parent().get_node("RTS/Player1"); 
 		player.setSide("left"); 
 		get_parent().get_node("RTS/Player2").setSide("right");
+		player.playerType = player.PlayerTypes.person; 
+		get_parent().get_node("RTS/Player2").playerType = player.PlayerTypes.cpu;
 	elif playernum == 2:
 		player = get_parent().get_node("RTS/Player2"); 
 		player.setSide("right");
 		get_parent().get_node("RTS/Player1").setSide("left");
+		player.playerType = player.PlayerTypes.person; 
+		get_parent().get_node("RTS/Player1").playerType = player.PlayerTypes.cpu;
 	else:
 		print("Error with getting player.");
 	
@@ -88,10 +92,12 @@ func touchInput():
 		gridPosFirst = convertPixelToGrid(firstTouch.x, firstTouch.y);
 		gridPosFinal = convertPixelToGrid(finalTouch.x, finalTouch.y);
 		selectorgridFirst = convertPixelToGridSelector(firstTouch.x,firstTouch.y); 
+		if selectorgridFirst > possibleSelectors.size() - 1:
+			selectorgridFirst = possibleSelectors.size() - 1
 		if isPieceInGrid(gridPosFinal.x, gridPosFinal.y) and controlling and !(gridPosFirst.x == gridPosFinal.x and gridPosFirst.y == gridPosFinal.y):
 			swapPieces(gridPosFirst.x, gridPosFirst.y, gridPosFinal.x, gridPosFinal.y);
 		elif isPieceInSelector(selectorgridFirst) and selectorChoice and finalTouch.y < 499 and checkIfRTSPieceFilled(allSelectors[selectorgridFirst]):
-			print("Piece will be spawned");
+			#print("Piece will be spawned");
 			var s = addRTSPiece(allSelectors[selectorgridFirst]);
 			allColorsMatched.erase(allSelectors[selectorgridFirst].myPiece.color); 
 			partiallyFilledSelectors();
@@ -110,11 +116,9 @@ func swapPieces(column, row, columnrel, rowrel):
 		allPieces[columnrel][rowrel] = firstPiece; 
 		firstPiece.move(convertGridToPixel(columnrel, rowrel)); 
 		nextPiece.move(convertGridToPixel(column, row)); 
-		print("Switched Piece at: " + String(column) + ", " + String(row) + " with Piece at: " + String(columnrel) + ", " + String(rowrel)); 
+		#print("Switched Piece at: " + String(column) + ", " + String(row) + " with Piece at: " + String(columnrel) + ", " + String(rowrel)); 
 		findMatches();
-	else:
-		print("Can't swipe there, that space is null right now"); 
-	pass;
+
 	
 func checkIfRTSPieceFilled(chosen_selector):
 	var cc = chosen_selector.myPiece.color; 
@@ -191,7 +195,7 @@ func spawnPieces():
 			add_child(piece); 
 			piece.position = convertGridToPixel(i, j);
 			allPieces[i][j] = piece;
-			print(String(piece.position) + "is in position: " + String(i) + ", " + String(j)); 
+			#print(String(piece.position) + "is in position: " + String(i) + ", " + String(j)); 
 			
 func spawnSelectors():
 	var selectors = []

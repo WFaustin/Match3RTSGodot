@@ -82,7 +82,17 @@ position = Vector2( 411, 406 )
 position = Vector2( 534, 256 )
 
 [node name="askForEnemies" type="Timer" parent="."]
+
+[node name="cpuMakesEnemies" type="Timer" parent="."]
+wait_time = 4.5
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 45.0
+one_shot = true
+autostart = true
 [connection signal="timeout" from="destoryTimer" to="grid" method="_on_destoryTimer_timeout"]
 [connection signal="timeout" from="collapseTimer" to="grid" method="_on_collapseTimer_timeout"]
 [connection signal="timeout" from="refill" to="grid" method="_on_refill_timeout"]
 [connection signal="timeout" from="askForEnemies" to="." method="_on_askForEnemies_timeout"]
+[connection signal="timeout" from="cpuMakesEnemies" to="RTS/Player1" method="_on_cpuMakesEnemies_timeout"]
+[connection signal="timeout" from="GameTimer" to="RTS" method="_on_GameTimer_timeout"]

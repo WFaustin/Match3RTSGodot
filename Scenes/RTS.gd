@@ -4,7 +4,6 @@ var players = [];
 var player1;
 var player2; 
 
-
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -30,17 +29,17 @@ func setUpRTS():
 func checkWhoWon():
 	var p1win = player1.loseCondition(); 
 	var p2win = player2.loseCondition(); 
-	if p1win and p2win:
-		print("Draw!"); 
-		Endwinner.winnernum = 3; 
-		get_tree().change_scene("res://Scenes/EndGameMenu.tscn"); 
-	elif p1win and !p2win:
+	if p1win and !p2win:
 		print("P2 wins!"); 
 		Endwinner.winnernum = 2; 
 		get_tree().change_scene("res://Scenes/EndGameMenu.tscn"); 
 	elif !p1win and p2win:
 		print("P1 wins!"); 
 		Endwinner.winnernum = 1; 
+		get_tree().change_scene("res://Scenes/EndGameMenu.tscn"); 
+	elif get_parent().get_node("GameTimer").get_time_left() == 0:
+		print("Draw!"); 
+		Endwinner.winnernum = 3; 
 		get_tree().change_scene("res://Scenes/EndGameMenu.tscn"); 
 	#else:
 		#print("No one's won yet!"); 
@@ -49,3 +48,7 @@ func checkWhoWon():
 func _process(delta):
 	checkWhoWon();
 #	pass
+
+
+func _on_GameTimer_timeout():
+	checkWhoWon();
